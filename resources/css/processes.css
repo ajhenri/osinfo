@@ -1,0 +1,13 @@
+.processes {
+  width: 100%;
+  padding: 15px 0px;
+}
+
+.processes table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.processes table > tbody > tr > td {
+  word-wrap: break-word;
+}

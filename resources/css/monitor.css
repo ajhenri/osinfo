@@ -1,0 +1,24 @@
+.container {
+  padding: 15px 0px;
+}
+
+.field__block {
+  padding: 5px;
+}
+
+.field__block label {
+  width: 50%;
+}
+
+.thin_text {
+  font-weight: 100;
+}
+
+.gauge {
+  display: inline-block;
+  padding: 5px 25px;
+}
+
+.gauge h4 {
+  text-align: center;
+}

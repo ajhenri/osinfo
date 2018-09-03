@@ -1,0 +1,37 @@
+{
+  "name": "osinfo",
+  "version": "1.0.0",
+  "description": "A desktop app built with Electron that provides system details and information, including CPU %, memory %, network connections, and running processes.",
+  "main": "main.js",
+  "scripts": {
+    "watch": "webpack --progress --watch",
+    "test": "npm run watch && electron --debug=5858 .",
+    "debug": "electron --inspect=5858 .",
+    "start": "electron ."
+  },
+  "author": "A.J. Henri",
+  "license": "MIT",
+  "dependencies": {
+    "babel-plugin-module-resolver": "^3.1.0",
+    "bootstrap": "^3.3.7",
+    "osx-temperature-sensor": "^1.0.1",
+    "react": "^16.2.0",
+    "react-bootstrap": "^0.32.1",
+    "react-dom": "^16.2.0",
+    "react-vis": "^1.9.1",
+    "systeminformation": "^3.37.4"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "css-loader": "^0.28.10",
+    "electron": "^1.8.3",
+    "express": "^4.16.2",
+    "style-loader": "^0.20.2",
+    "webpack": "^3.11.0"
+  }
+}
