@@ -1,8 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { DropdownButton, MenuItem } from 'react-bootstrap';
-import styles from '../resources/css/network.css';
 
+/**
+ * This component contains the network interfaces dropdown found on the network tab.
+ *
+ * @class NetworkInterfaceDropdown
+ * @extends {React.Component}
+ */
 class NetworkInterfaceDropdown extends React.Component {
   constructor(props){
     super(props);
@@ -10,6 +14,12 @@ class NetworkInterfaceDropdown extends React.Component {
     this.onSelect = this.onSelect.bind(this);
   }
 
+  /**
+   * Event handler that fires when selecting a network interface.
+   *
+   * @param {string} eventKey
+   * @memberof NetworkInterfaceDropdown
+   */
   onSelect(eventKey){
     this.props.getNetworkStats(eventKey);
   }

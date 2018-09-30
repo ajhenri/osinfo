@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import styles from '../resources/css/gauge.css';
 
 const RADIUS = 54;

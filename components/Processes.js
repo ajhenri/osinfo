@@ -1,10 +1,16 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Table } from 'react-bootstrap';
 import styles from '../resources/css/processes.css';
 
 const processes = require('electron').remote.require('./processes/processes');
 
+/**
+ * This component contains the simple process table generated when
+ * clicking the 'Processes' tab in the Osinfo UI.
+ *
+ * @class Processes
+ * @extends {React.Component}
+ */
 class Processes extends React.Component {
   constructor(props){
     super(props);

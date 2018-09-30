@@ -1,13 +1,18 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Table } from 'react-bootstrap';
 import styles from '../resources/css/network.css';
 
+/**
+ * This component generates a simple table containing the active connections
+ * for the network.
+ *
+ * @class NetworkConnections
+ * @extends {React.Component}
+ */
 class NetworkConnections extends React.Component {
   constructor(props){
     super(props);
   }
-
 
   render() {
     const { connections } = this.props;

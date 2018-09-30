@@ -5,8 +5,8 @@
   "main": "main.js",
   "scripts": {
     "watch": "webpack --progress --watch",
-    "test": "npm run watch && electron --debug=5858 .",
-    "debug": "electron --inspect=5858 .",
+    "test": "npm run watch && npm run debug",
+    "debug": "nodemon --watch * --exec \"electron --inspect=5858 .\"",
     "start": "electron ."
   },
   "author": "A.J. Henri",
@@ -19,7 +19,7 @@
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.2.0",
     "react-vis": "^1.9.1",
-    "systeminformation": "^3.37.4"
+    "systeminformation": "^3.45.6"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -30,6 +30,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "css-loader": "^0.28.10",
     "electron": "^1.8.3",
+    "electron-reload": "^1.2.5",
     "express": "^4.16.2",
     "style-loader": "^0.20.2",
     "webpack": "^3.11.0"

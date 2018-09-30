@@ -23,10 +23,7 @@ const config = {
 				loader: 'style-loader!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]' 
 			}
 		]
-	},
-	plugins: [
-		new webpack.optimize.UglifyJsPlugin()
-	]
+	}
 };
 
 module.exports = config;

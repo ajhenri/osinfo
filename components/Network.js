@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import styles from '../resources/css/network.css';
 import { Col, Clearfix } from 'react-bootstrap';
 import NetworkConnections from './NetworkConnections';
@@ -7,6 +6,12 @@ import NetworkInterfaceDropdown from './NetworkInterfaceDropdown';
 
 const network = require('electron').remote.require('./processes/network');
 
+/**
+ * This component gathers the network interface details for the system.
+ *
+ * @class Network
+ * @extends {React.Component}
+ */
 class Network extends React.Component {
   constructor(props){
     super(props);
@@ -21,6 +26,12 @@ class Network extends React.Component {
     this.getNetworkStats = this.getNetworkStats.bind(this);
   }
 
+  /**
+   * Get the network interface stats and rerender.
+   *
+   * @param {string} i - The network interface.
+   * @memberof Network
+   */
   getNetworkStats(i){
     network.getNetworkStats(i.iface).then((stats) => {
       this.setState({

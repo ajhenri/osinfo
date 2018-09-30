@@ -1,5 +1,10 @@
 const si = require('systeminformation');
 
+/**
+ * Get the list of processes running on system (exclude sleeping processes).
+ *
+ * @returns {array} List of processes with information.
+ */
 function getProcesses(){
   return new Promise((resolve, reject) => {
     si.processes().then((data) => {
@@ -15,5 +20,5 @@ function getProcesses(){
 }
 
 module.exports = {
-  getProcesses: getProcesses,
+  getProcesses: getProcesses
 };

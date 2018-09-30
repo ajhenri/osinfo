@@ -1,9 +1,14 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Grid, Row, Col } from 'react-bootstrap';
 import System from './System';
 import Details from './Details';
 
+/**
+ * This is the root component for the Osinfo user interface.
+ *
+ * @class Osinfo
+ * @extends {React.Component}
+ */
 class Osinfo extends React.Component {
   constructor(props){
     super(props);

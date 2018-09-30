@@ -27947,19 +27947,13 @@ class System extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 
   componentDidMount() {
     system.getSystemInformation().then(data => {
-      let systemInformation = {};
-      for (const i in data) {
-        for (const j in data[i]) {
-          systemInformation[j] = data[i][j];
-        }
-      }
-
-      this.setState({ systemInformation });
+      this.setState({ systemInformation: data });
     });
   }
 
   render() {
     const si = this.state.systemInformation;
+    const battery = si.battery ? si.battery : {};
 
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
       'div',
@@ -27970,6 +27964,14 @@ class System extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'p',
           { className: __WEBPACK_IMPORTED_MODULE_3__resources_css_system_css___default.a.system_name },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'span',
+            { style: { fontWeight: 200 } },
+            si.hostname,
+            ' - ',
+            si.ip
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
           si.model,
           ' (',
           si.distro,
@@ -27989,10 +27991,11 @@ class System extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
           'p',
           null,
           'Battery: ',
-          si.percent,
+          battery.percent,
           '%',
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
-          'Wifi: 3834AO'
+          'Wifi: ',
+          si.ssid
         )
       ),
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_bootstrap__["a" /* Clearfix */], null)
@@ -28169,13 +28172,10 @@ module.exports = function (css) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Monitor__ = __webpack_require__(307);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Processes__ = __webpack_require__(316);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Network__ = __webpack_require__(319);
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Monitor__ = __webpack_require__(307);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Processes__ = __webpack_require__(316);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Network__ = __webpack_require__(319);
 
 
 
@@ -28192,54 +28192,54 @@ class Details extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
       'div',
       { className: 'details' },
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__["i" /* Tab */].Container,
+        __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["i" /* Tab */].Container,
         { id: 'detail-tabs', defaultActiveKey: 'first' },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__["h" /* Row */],
+          __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["h" /* Row */],
           { className: 'clearfix' },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__["b" /* Col */],
+            __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["b" /* Col */],
             { md: 12 },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__["f" /* Nav */],
+              __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["f" /* Nav */],
               { className: 'nav-justified', bsStyle: 'pills' },
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__["g" /* NavItem */],
+                __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["g" /* NavItem */],
                 { eventKey: 'first' },
                 'Monitor'
               ),
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__["g" /* NavItem */],
+                __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["g" /* NavItem */],
                 { eventKey: 'second' },
                 'Processes'
               ),
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__["g" /* NavItem */],
+                __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["g" /* NavItem */],
                 { eventKey: 'third' },
                 'Network'
               )
             )
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__["b" /* Col */],
+            __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["b" /* Col */],
             { md: 12 },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__["i" /* Tab */].Content,
+              __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["i" /* Tab */].Content,
               { animation: true },
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__["i" /* Tab */].Pane,
+                __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["i" /* Tab */].Pane,
                 { eventKey: 'first' },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Monitor__["a" /* default */], null)
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Monitor__["a" /* default */], null)
               ),
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__["i" /* Tab */].Pane,
+                __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["i" /* Tab */].Pane,
                 { eventKey: 'second' },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Processes__["a" /* default */], null)
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Processes__["a" /* default */], null)
               ),
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__["i" /* Tab */].Pane,
+                __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["i" /* Tab */].Pane,
                 { eventKey: 'third' },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__Network__["a" /* default */], null)
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Network__["a" /* default */], null)
               )
             )
           )
@@ -28279,15 +28279,15 @@ class Monitor extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
     super(props);
 
     this.state = {
-      cpu: {
-        percentage: 0
-      },
-      ram: {
-        percentage: 0
+      cpu: {},
+      memory: {},
+      disk: {
+        layout: []
       }
     };
 
     this.toPercent = this.toPercent.bind(this);
+    this.formatBytes = this.formatBytes.bind(this);
     this.getPercentages = this.getPercentages.bind(this);
     this.getMemoryUsedPercentage = this.getMemoryUsedPercentage.bind(this);
   }
@@ -28311,34 +28311,46 @@ class Monitor extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
     return Math.round(100 - amtFree);
   }
 
+  formatBytes(bytes) {
+    const gb = 1000000000,
+          mb = 1000000,
+          kb = 1000;
+    if (bytes > gb) {
+      return Math.round(bytes * .000000001) + " GB";
+    } else if (bytes > mb) {
+      return Math.round(bytes * .000001) + " MB";
+    } else if (bytes > kb) {
+      return Math.round(bytes * .001) + " KB";
+    } else {
+      return bytes + " B";
+    }
+  }
+
   componentDidMount() {
     monitor.getMonitorStartData().then(data => {
-      let cpu = data[0],
-          ram = data[4];
-      cpu.currentSpeed = data[1];
-      cpu.percentage = this.toPercent(data[2].avgload);
-      ram.percentage = this.getMemoryUsedPercentage(data[4].free, data[4].total);
+      console.log('getMonitorStartData');
+      console.log(JSON.stringify(data, null, 2));
 
-      console.log('Monitor Start');
-      // console.log(data);
-      // console.log(JSON.stringify(data));
-      console.log(JSON.stringify(data[4]));
-      console.log(JSON.stringify(data[5]));
+      this.setState(data);
 
-      this.setState({
-        cpu,
-        ram
-      }, () => {
-        // setInterval(() => {
-        //   this.getPercentages();
-        // }, 3000);
-      });
+      // cpu.percentage = data.cpu.percentage;
+      // ram.percentage = this.getMemoryUsedPercentage(data.memory.free, data.memory.total);
+
+      // this.setState({
+      //   cpu,
+      //   ram
+      // }, () => {
+      //   setInterval(() => {
+      //     this.getPercentages();
+      //   }, 3000);
+      // });
     });
   }
 
   render() {
-    const { cpu, ram } = this.state;
-    const cpuCache = cpu.cache ? cpu.cache : {};
+    const { cpu, memory, disk } = this.state;
+    const cpuPercentage = Math.round(cpu.percentage);
+    const ramPercentage = this.getMemoryUsedPercentage(memory.free, memory.total);
 
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
       'div',
@@ -28346,56 +28358,43 @@ class Monitor extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_react_bootstrap__["a" /* Clearfix */], null),
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         __WEBPACK_IMPORTED_MODULE_4_react_bootstrap__["b" /* Col */],
-        { md: 12 },
+        { md: 12, style: { textAlign: 'center' } },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           __WEBPACK_IMPORTED_MODULE_4_react_bootstrap__["b" /* Col */],
-          { md: 3, className: __WEBPACK_IMPORTED_MODULE_3__resources_css_monitor_css___default.a.gauge },
+          { md: 4, className: __WEBPACK_IMPORTED_MODULE_3__resources_css_monitor_css___default.a.gauge },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'h4',
             { className: __WEBPACK_IMPORTED_MODULE_3__resources_css_monitor_css___default.a.thin_text },
             'CPU'
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__Gauge__["a" /* default */], {
-            value: cpu.percentage,
+            value: cpuPercentage,
             color: '#f6b93b'
           })
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           __WEBPACK_IMPORTED_MODULE_4_react_bootstrap__["b" /* Col */],
-          { md: 3, className: __WEBPACK_IMPORTED_MODULE_3__resources_css_monitor_css___default.a.gauge },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'h4',
-            { className: __WEBPACK_IMPORTED_MODULE_3__resources_css_monitor_css___default.a.thin_text },
-            'GPU'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__Gauge__["a" /* default */], {
-            value: 9,
-            color: '#f6b93b'
-          })
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_4_react_bootstrap__["b" /* Col */],
-          { md: 3, className: __WEBPACK_IMPORTED_MODULE_3__resources_css_monitor_css___default.a.gauge },
+          { md: 4, className: __WEBPACK_IMPORTED_MODULE_3__resources_css_monitor_css___default.a.gauge },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'h4',
             { className: __WEBPACK_IMPORTED_MODULE_3__resources_css_monitor_css___default.a.thin_text },
             'RAM'
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__Gauge__["a" /* default */], {
-            value: ram.percentage,
+            value: ramPercentage,
             color: '#e58e26'
           })
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           __WEBPACK_IMPORTED_MODULE_4_react_bootstrap__["b" /* Col */],
-          { md: 3, className: __WEBPACK_IMPORTED_MODULE_3__resources_css_monitor_css___default.a.gauge },
+          { md: 4, className: __WEBPACK_IMPORTED_MODULE_3__resources_css_monitor_css___default.a.gauge },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'h4',
             { className: __WEBPACK_IMPORTED_MODULE_3__resources_css_monitor_css___default.a.thin_text },
             'DISK'
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__Gauge__["a" /* default */], {
-            value: 65,
+            value: disk.percentage,
             color: '#e58e26'
           })
         )
@@ -28454,7 +28453,7 @@ class Monitor extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
             'Cache'
           )
         ),
-        cpuCache && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        cpu.cache && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'div',
           null,
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -28468,8 +28467,7 @@ class Monitor extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'span',
               null,
-              cpuCache['l1d'],
-              ' bytes'
+              this.formatBytes(cpu.cache['l1d'])
             )
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -28483,8 +28481,7 @@ class Monitor extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'span',
               null,
-              cpuCache['l1i'],
-              ' bytes'
+              this.formatBytes(cpu.cache['l1i'])
             )
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -28498,8 +28495,7 @@ class Monitor extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'span',
               null,
-              cpuCache['l2'],
-              ' bytes'
+              this.formatBytes(cpu.cache['l2'])
             )
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -28513,8 +28509,7 @@ class Monitor extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'span',
               null,
-              cpuCache['l3'],
-              ' bytes'
+              this.formatBytes(cpu.cache['l3'])
             )
           )
         )
@@ -28537,12 +28532,12 @@ class Monitor extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'label',
             null,
-            'Model:'
+            'Total:'
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'span',
             null,
-            cpu.model
+            this.formatBytes(memory.total)
           )
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -28551,14 +28546,110 @@ class Monitor extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'label',
             null,
-            '# of Cores:'
+            'Free:'
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'span',
             null,
-            cpu.cores
+            this.formatBytes(memory.free)
+          )
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          { className: __WEBPACK_IMPORTED_MODULE_3__resources_css_monitor_css___default.a.field__block },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'label',
+            null,
+            'Used:'
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'span',
+            null,
+            this.formatBytes(memory.used)
+          )
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          { className: __WEBPACK_IMPORTED_MODULE_3__resources_css_monitor_css___default.a.field__block },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'label',
+            null,
+            'Active:'
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'span',
+            null,
+            this.formatBytes(memory.active)
+          )
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          { className: __WEBPACK_IMPORTED_MODULE_3__resources_css_monitor_css___default.a.field__block },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'label',
+            null,
+            'Buffcache:'
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'span',
+            null,
+            this.formatBytes(memory.buffcache)
+          )
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          { className: __WEBPACK_IMPORTED_MODULE_3__resources_css_monitor_css___default.a.field__block },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'label',
+            null,
+            'Available:'
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'span',
+            null,
+            this.formatBytes(memory.available)
           )
         )
+      ),
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        __WEBPACK_IMPORTED_MODULE_4_react_bootstrap__["b" /* Col */],
+        { md: 12 },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          { className: __WEBPACK_IMPORTED_MODULE_3__resources_css_monitor_css___default.a.field__block },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'h4',
+            { className: __WEBPACK_IMPORTED_MODULE_3__resources_css_monitor_css___default.a.thin_text },
+            'Disk Layout'
+          )
+        ),
+        disk.layout.map((d, i) => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          { key: i },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { className: __WEBPACK_IMPORTED_MODULE_3__resources_css_monitor_css___default.a.field__block },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'span',
+              null,
+              d.name
+            )
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { className: __WEBPACK_IMPORTED_MODULE_3__resources_css_monitor_css___default.a.field__block },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'label',
+              null,
+              'Size:'
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'span',
+              null,
+              this.formatBytes(d.size)
+            )
+          )
+        ))
       )
     );
   }
@@ -28704,11 +28795,8 @@ exports.locals = {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__resources_css_gauge_css__ = __webpack_require__(314);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__resources_css_gauge_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__resources_css_gauge_css__);
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__resources_css_gauge_css__ = __webpack_require__(314);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__resources_css_gauge_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__resources_css_gauge_css__);
 
 
 
@@ -28758,11 +28846,11 @@ class Gauge extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
       'div',
-      { className: __WEBPACK_IMPORTED_MODULE_2__resources_css_gauge_css___default.a.demo },
+      { className: __WEBPACK_IMPORTED_MODULE_1__resources_css_gauge_css___default.a.demo },
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'svg',
-        { className: __WEBPACK_IMPORTED_MODULE_2__resources_css_gauge_css___default.a.progress, width: '120', height: '120', viewBox: '0 0 120 120' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('circle', { className: __WEBPACK_IMPORTED_MODULE_2__resources_css_gauge_css___default.a.progress_meter,
+        { className: __WEBPACK_IMPORTED_MODULE_1__resources_css_gauge_css___default.a.progress, width: '120', height: '120', viewBox: '0 0 120 120' },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('circle', { className: __WEBPACK_IMPORTED_MODULE_1__resources_css_gauge_css___default.a.progress_meter,
           cx: '60',
           cy: '60',
           r: '54',
@@ -28771,7 +28859,7 @@ class Gauge extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
           strokeWidth: '5'
         }),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('circle', {
-          className: __WEBPACK_IMPORTED_MODULE_2__resources_css_gauge_css___default.a.progress_value,
+          className: __WEBPACK_IMPORTED_MODULE_1__resources_css_gauge_css___default.a.progress_value,
           cx: '60',
           cy: '60',
           r: '54',
@@ -28784,7 +28872,7 @@ class Gauge extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
         }),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'text',
-          { className: __WEBPACK_IMPORTED_MODULE_2__resources_css_gauge_css___default.a.progress_text, x: xtext, y: '-52', fill: 'white', fontSize: '25' },
+          { className: __WEBPACK_IMPORTED_MODULE_1__resources_css_gauge_css___default.a.progress_text, x: xtext, y: '-52', fill: 'white', fontSize: '25' },
           value,
           '%'
         )
@@ -29332,12 +29420,9 @@ exports.locals = {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__resources_css_network_css__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__resources_css_network_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__resources_css_network_css__);
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__resources_css_network_css__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__resources_css_network_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__resources_css_network_css__);
 
 
 
@@ -29352,14 +29437,14 @@ class NetworkConnections extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.C
 
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
       'div',
-      { className: __WEBPACK_IMPORTED_MODULE_3__resources_css_network_css___default.a.network_connections },
+      { className: __WEBPACK_IMPORTED_MODULE_2__resources_css_network_css___default.a.network_connections },
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'h2',
         null,
         'Connections'
       ),
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__["j" /* Table */],
+        __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["j" /* Table */],
         { striped: true, bordered: true, condensed: true, hover: true },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'thead',

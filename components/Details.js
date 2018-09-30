@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Tab, Row, Col, Nav, NavItem } from 'react-bootstrap';
 import Monitor from './Monitor';
 import Processes from './Processes';
