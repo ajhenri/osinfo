@@ -1,23 +1,23 @@
 .progress {
-	transform: rotate(-90deg);
-	margin: 0 auto;
-	display: block;
+  transform: rotate(-90deg);
+  margin: 0 auto;
+  display: block;
 }
 
 .progress_text {
-	transform: rotate(90deg);
+  transform: rotate(90deg);
 }
 
 .progress__meter,
 .progress__value {
-	fill: none;
+  fill: none;
 }
 
 .progress__meter {
-	stroke: #e6e6e6;
+  stroke: #e6e6e6;
 }
 
 .progress__value {
-	stroke: #f77a52;
-	stroke-linecap: round;
+  stroke: #f77a52;
+  stroke-linecap: round;
 }
