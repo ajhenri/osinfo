@@ -4,6 +4,7 @@ import { Col, Clearfix } from 'react-bootstrap';
 import Gauge from './Gauge';
 
 const monitor = require('electron').remote.require('./processes/monitor');
+const { ipcRenderer } = require('electron');
 
 /**
  * The system monitor component contains the 3 gauges for CPU, RAM, DISK;
@@ -28,7 +29,6 @@ class Monitor extends React.Component {
     this.toPercent = this.toPercent.bind(this);
     this.formatBytes = this.formatBytes.bind(this);
     this.getPercentages = this.getPercentages.bind(this);
-    this.getMemoryUsedPercentage = this.getMemoryUsedPercentage.bind(this);
   }
 
   /**
@@ -59,20 +59,6 @@ class Monitor extends React.Component {
   }
 
   /**
-   * Get the used memory percentage based on the free and total memory.
-   *
-   * @param {number} free
-   * @param {number} total
-   * 
-   * @returns {number} The rounded value of the used memory.
-   * @memberof Monitor
-   */
-  getMemoryUsedPercentage(free, total) {
-    const amtFree = 100 * (free/total);
-    return Math.round(100 - amtFree);
-  }
-
-  /**
    * Format an input of bytes to return the appropriate unit.
    *
    * @param {number} bytes
@@ -96,25 +82,21 @@ class Monitor extends React.Component {
   componentDidMount(){
     monitor.getMonitorStartData().then((data) => {
       this.setState(data);
-      
-      // cpu.percentage = data.cpu.percentage;
-      // ram.percentage = this.getMemoryUsedPercentage(data.memory.free, data.memory.total);
-      
-      // this.setState({
-      //   cpu,
-      //   ram
-      // }, () => {
-      //   setInterval(() => {
-      //     this.getPercentages();
-      //   }, 3000);
-      // });
+    });
+
+    ipcRenderer.on('refreshed-monitor-data', (event, arg) => {
+      let state = this.state;
+      state.cpu.percentage = Math.round(arg.cpuPercentage);
+      state.memory.percentage = arg.memPercentage;
+      state.disk.percentage = arg.diskPercentage;
+
+      this.setState(state);
     });
   }
 
   render() {
     const { cpu, memory, disk } = this.state;
     const cpuPercentage = Math.round(cpu.percentage);
-    const ramPercentage = this.getMemoryUsedPercentage(memory.free, memory.total);
 
     return (
       <div className={styles.container}>
@@ -134,7 +116,7 @@ class Monitor extends React.Component {
               RAM
             </h4>
             <Gauge 
-              value={ramPercentage} 
+              value={memory.percentage} 
               color="#e58e26"
             />
           </Col>
