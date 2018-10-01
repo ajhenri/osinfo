@@ -3,6 +3,19 @@ const si = require('systeminformation');
 const exec = util.promisify(require('child_process').exec);
 
 /**
+ * Get the used memory percentage based on the free and total memory.
+ *
+ * @param {number} free
+ * @param {number} total
+ * 
+ * @returns {number} The rounded value of the used memory.
+ */
+function getMemoryUsedPercentage(free, total) {
+  const amtFree = 100 * (free/total);
+  return Math.round(100 - amtFree);
+}
+
+/**
  * Get the available disk space for the main filesystem.
  *
  * @returns {number} The percent of disk used.
@@ -23,6 +36,26 @@ async function getDf(){
 }
 
 /**
+ * Get the usage stats of the CPU, RAM and DISK.
+ * #TODO: Include memory breakdown in refresh.
+ *
+ * @returns {object} Object containing percent usage for CPU, RAM, and DISK.
+ */
+async function getMonitorRefreshData(){
+  const cpuLoad = await si.currentLoad();
+  const diskSpaceUsed = await getDf();
+  const memory = await si.mem();
+
+  const memoryUsed = getMemoryUsedPercentage(memory.free, memory.total);
+
+  return {
+    cpuPercentage: cpuLoad.currentload,
+    diskPercentage: diskSpaceUsed,
+    memPercentage: memoryUsed
+  };
+}
+
+/**
  * Gets all the data needed for the monitoring view. This includes data relating to
  * the system's CPU, memory and disk.
  *
@@ -35,6 +68,7 @@ async function getMonitorStartData(){
     const cpuCurrentspeed = await si.cpuCurrentspeed();
     const memory = await si.mem();
     const memoryLayout = await si.memLayout();
+    const memoryUsed = getMemoryUsedPercentage(memory.free, memory.total);
     const diskLayout = await si.diskLayout();
     const diskSpaceUsed = await getDf();
 
@@ -60,7 +94,8 @@ async function getMonitorStartData(){
         swaptotal: memory.swaptotal,
         swapused: memory.swapused,
         swapfree: memory.swapfree,
-        layout: memoryLayout
+        layout: memoryLayout,
+        percentage: memoryUsed
       },
       disk: {
         layout: diskLayout,
@@ -73,5 +108,6 @@ async function getMonitorStartData(){
 }
 
 module.exports = {
-  getMonitorStartData: getMonitorStartData
+  getMonitorStartData: getMonitorStartData,
+  getMonitorRefreshData: getMonitorRefreshData
 };

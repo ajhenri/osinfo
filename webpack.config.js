@@ -2,10 +2,13 @@ const webpack = require('webpack');
 const path = require('path');
 
 const config = {
-  entry: './renderer.js',
+  entry: {
+    renderer: './renderer.js',
+    background: './resources/js/background.js'
+  },
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js'
+    filename: '[name].js',
+    path: path.resolve(__dirname, 'dist')
   },
   target: 'electron-renderer',
   module: {

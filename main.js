@@ -1,12 +1,10 @@
 const electron = require('electron');
 const path = require('path');
 
-const app = electron.app;
-const BrowserWindow = electron.BrowserWindow;
-
+const { app, BrowserWindow, ipcMain } = electron;
 const url = require('url');
 
-let win;
+let win = null, winMonitor = null;
 
 function createWindow () {
   win = new BrowserWindow({width: 800, height: 600});
@@ -22,7 +20,27 @@ function createWindow () {
   });
 }
 
-app.on('ready', createWindow);
+function createBackgroundProcess(){
+  winMonitor = new BrowserWindow({ width: 400, height: 400, show: false });
+
+  // Creates background process (hidden window that doesn't block main UI thread).
+  winMonitor.loadURL(url.format({
+    pathname: path.join(__dirname, 'background.html'),
+    protocol: 'file:',
+    slashes: true
+  }));
+
+  // Send contents of monitor refresh to renderer.
+  ipcMain.on('refresh-monitor-data', function(event, arg){
+    win.webContents.send('refreshed-monitor-data', arg);
+  });
+}
+
+app.on('ready', function (){
+  createWindow();
+  createBackgroundProcess();
+});
+
 app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') {
     app.quit();
@@ -32,5 +50,8 @@ app.on('window-all-closed', function () {
 app.on('activate', function () {
   if (win === null) {
     createWindow();
+  }
+  if(winMonitor === null) {
+    createBackgroundProcess();
   }
 });
