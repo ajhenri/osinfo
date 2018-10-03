@@ -4,6 +4,12 @@ import Monitor from './Monitor';
 import Processes from './Processes';
 import Network from './Network';
 
+/**
+ * The base component which contains the tab navigation and contents.
+ *
+ * @class Details
+ * @extends {React.Component}
+ */
 class Details extends React.Component {
   constructor(props){
     super(props);

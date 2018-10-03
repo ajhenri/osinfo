@@ -4,6 +4,12 @@ import styles from '../resources/css/gauge.css';
 const RADIUS = 54;
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
 
+/**
+ * A component that generates an SVG gauge graphic to be used to represent progress.
+ *
+ * @class Gauge
+ * @extends {React.Component}
+ */
 class Gauge extends React.Component {
   constructor(props){
     super(props);
@@ -16,6 +22,12 @@ class Gauge extends React.Component {
     this.progress = this.progress.bind(this);
   }
 
+  /**
+   * Fills all or a portion of the circle.
+   *
+   * @param {number} value - Any value from 1-100
+   * @memberof Gauge
+   */
   progress(value) {
     let progress = value / 100;
     let dashoffset = CIRCUMFERENCE * (1 - progress);
@@ -26,10 +38,21 @@ class Gauge extends React.Component {
     });
   }
 
+  /**
+   * Initializes progress to 0.
+   *
+   * @memberof Gauge
+   */
   componentWillMount(){
     this.progress(0);
   }
 
+  /**
+   * Sets progress to sent value.
+   *
+   * @param {object} newProps
+   * @memberof Gauge
+   */
   componentWillReceiveProps(newProps){
     if(newProps.value){
       this.progress(newProps.value);
