@@ -60,24 +60,30 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 320);
+/******/ 	return __webpack_require__(__webpack_require__.s = 302);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 23:
+/***/ 19:
 /***/ (function(module, exports) {
 
 module.exports = require("electron");
 
 /***/ }),
 
-/***/ 320:
+/***/ 302:
 /***/ (function(module, exports, __webpack_require__) {
 
-const { ipcRenderer } = __webpack_require__(23);
-const monitor = __webpack_require__(23).remote.require('./processes/monitor');
+const { ipcRenderer } = __webpack_require__(19);
+const monitor = __webpack_require__(19).remote.require('./processes/monitor');
 
+/**
+ * Calls the monitor function to refresh CPU, memory and disk data. It then 
+ * sends an IPC message with that data back to the main process.
+ *
+ * @returns void
+ */
 function refreshMonitorData() {
   return monitor.getMonitorRefreshData().then(data => {
     ipcRenderer.send('refresh-monitor-data', data);
@@ -85,6 +91,7 @@ function refreshMonitorData() {
 }
 
 refreshMonitorData();
+// Run the refresh every second.
 setInterval(refreshMonitorData, 1000);
 
 /***/ })

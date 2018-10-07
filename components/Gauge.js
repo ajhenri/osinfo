@@ -91,7 +91,7 @@ class Gauge extends React.Component {
             strokeDashoffset={offset} 
             strokeDasharray={CIRCUMFERENCE}
           />
-          <text className={styles.progress_text} x={xtext} y="-52" fill="white" fontSize="25">{value}%</text>
+          <text className={styles.progress_text} x={xtext} y="-52" fill="#333" fontSize="25">{value}%</text>
         </svg>
       </div>
     );

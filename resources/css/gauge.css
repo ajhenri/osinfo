@@ -6,6 +6,7 @@
 
 .progress_text {
   transform: rotate(90deg);
+  font-weight: 100;
 }
 
 .progress__meter,
