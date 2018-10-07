@@ -40,7 +40,9 @@ function createBackgroundProcess(){
 
   // Send contents of monitor refresh to renderer.
   ipcMain.on('refresh-monitor-data', function(event, arg){
-    win.webContents.send('refreshed-monitor-data', arg);
+    if(win && win.isFocused()){
+      win.webContents.send('refreshed-monitor-data', arg);
+    }
   });
 }
 
