@@ -1,5 +1,6 @@
 {
   "name": "osinfo",
+  "productName": "Osinfo",
   "version": "1.0.0",
   "description": "A desktop app built with Electron that provides system details and information, including CPU %, memory %, network connections, and running processes.",
   "main": "main.js",
@@ -8,7 +9,7 @@
     "test": "npm run watch && npm run debug",
     "debug": "nodemon --watch * --exec \"electron --inspect=5858 .\"",
     "start": "electron .",
-    "build": "electron-packager . Osinfo"
+    "build": "electron-packager . --overwrite --platform=darwin --icon=resources/img/icon.icns --prune=true --out=builds"
   },
   "author": "A.J. Henri",
   "license": "MIT",
@@ -31,6 +32,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "css-loader": "^0.28.11",
     "electron": "^1.8.8",
+    "electron-installer-dmg": "^2.0.0",
     "electron-packager": "^12.2.0",
     "electron-reload": "^1.2.5",
     "express": "^4.16.3",

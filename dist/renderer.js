@@ -28716,11 +28716,11 @@ class Monitor extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
           mb = 1000000,
           kb = 1000;
     if (bytes > gb) {
-      return Math.round(bytes * .000000001) + " GB";
+      return Math.floor(bytes * .000000001) + " GB";
     } else if (bytes > mb) {
-      return Math.round(bytes * .000001) + " MB";
+      return Math.floor(bytes * .000001) + " MB";
     } else if (bytes > kb) {
-      return Math.round(bytes * .001) + " KB";
+      return Math.floor(bytes * .001) + " KB";
     } else {
       return bytes + " B";
     }
