@@ -25,4 +25,4 @@ $ npm run start
 
 ## License
 
-MIT © [ajhenri](https://github.com/ajhenri)
+MPLv2 © [ajhenri](https://github.com/ajhenri)
