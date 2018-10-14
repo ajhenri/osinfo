@@ -5,7 +5,8 @@ Osinfo is an experimental desktop app built with Electron and React.
 # <img src="resources/img/osinfo_screenshot.png" width="500"/>
 
 ## Platforms
-MacOS
+
+MacOS [Download for Mac](https://github.com/ajhenri/osinfo/Osinfo.dmg)
 
 ## Setup
 
