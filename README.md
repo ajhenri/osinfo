@@ -19,6 +19,7 @@ $ npm run start
 
 ## Todo
 
+* Fix various bugs and performance issues.
 * Provide support for Windows and Linux.
 * Include insight on Docker containers.
 * Include more information on running tasks.
