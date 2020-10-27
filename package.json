@@ -21,7 +21,7 @@
     "react-bootstrap": "^0.32.4",
     "react-dom": "^16.5.2",
     "react-vis": "^1.11.2",
-    "systeminformation": "^3.45.7"
+    "systeminformation": "^4.27.11"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
