@@ -10,6 +10,12 @@ MacOS [Download for Mac](https://github.com/ajhenri/osinfo/blob/master/Osinfo.dm
 
 ## Setup
 
+### Requirements
+* npm  
+* node.js  
+* electron  
+* webpack  
+
 ```
 $ git clone https://github.com/ajhenri/osinfo.git
 $ cd osinfo
